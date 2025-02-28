@@ -4,5 +4,4 @@
 Get-WmiObject -class win32_process | Where-Object {$_.commandline -like '*CM_SSIS_ACCESS_LOG*'} |Select {S _. processID}, {$ _. processname}, {$ _. CommandLine} |fl
 
 # step5: kill the process id
-Stop-Process -Id < Process_ID > -Confirm -PassThruhostname
-
+Stop-Process -Id < Process_ID > -Confirm -PassThru
