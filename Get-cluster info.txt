@@ -1,0 +1,24 @@
+# Get general information about the cluster
+$cluster = Get-Cluster
+Write-Output "Cluster Name: $($cluster.Name)"
+Write-Output "Cluster Quorum Configuration: $($cluster.QuorumType)"
+
+# Get nodes in the cluster
+$clusterNodes = Get-ClusterNode
+Write-Output "Cluster Nodes:"
+$clusterNodes | Select-Object Name, State, NodeType | Format-Table -AutoSize
+
+# Get quorum details
+$clusterQuorum = Get-ClusterQuorum
+Write-Output "Quorum Resource: $($clusterQuorum.QuorumResource)"
+Write-Output "Quorum Type: $($clusterQuorum.QuorumType)"
+
+# Get disk layout (shared volumes)
+$clusterSharedVolumes = Get-ClusterSharedVolume
+Write-Output "Cluster Shared Volumes:"
+$clusterSharedVolumes | Select-Object Name, State, OwnerNode, Path | Format-Table -AutoSize
+
+# Get cluster networks
+$clusterNetworks = Get-ClusterNetwork
+Write-Output "Cluster Networks:"
+$clusterNetworks | Select-Object Name, Address, AddressMask, Role | Format-Table -AutoSize
